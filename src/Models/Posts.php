@@ -32,22 +32,56 @@ class Posts extends AbstractModel {
             'GET',
             $url,
             ['verify' => false]
-        )->getBody();
-        return json_decode($response, true);
+        );
+
+        return json_decode($response->getBody(), true);
     }
 
-    public function create()
+    public function create(array $body)
     {
-        return 'creating';
+        $url = Config::get('base_url').$this->endpoint;
+
+        $response = $this->client->request(
+            'POST',
+            $url,
+            array_merge(
+                ['verify' => false],
+                ['form_params' => $body]
+            )
+        );
+
+        return json_decode($response->getBody(), true);
     }
 
-    public function delete()
+    public function delete(?int $id)
     {
-        return 'deleting';
+        $url = Config::get('base_url').$this->endpoint;
+        if (!empty($id)) {
+            $url .= "/$id";
+        }
+
+        $response = $this->client->request(
+            'DELETE',
+            $url,
+            ['verify' => false]
+        );
+
+        return json_decode($response->getBody(), true);
     }
 
-    public function update()
+    public function update(array $body)
     {
-        return 'updating';
+        $url = Config::get('base_url').$this->endpoint;
+
+        $response = $this->client->request(
+            'POST',
+            $url,
+            array_merge(
+                ['verify' => false],
+                $body
+            )
+        );
+
+        return json_decode($response->getBody(), true);
     }
 }
