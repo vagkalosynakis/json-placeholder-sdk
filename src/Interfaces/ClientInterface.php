@@ -2,7 +2,7 @@
 
 Namespace Vkal\Interfaces;
 
-use Vkal\Models\Response;
+use Vkal\Classes\http\Response;
 
 interface ClientInterface{
     public function getToken(): string;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Vkal\Models;
+namespace Vkal\Classes\http;
 
 class Response {
     protected int $status_code;

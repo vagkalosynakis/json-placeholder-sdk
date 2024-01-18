@@ -1,6 +1,6 @@
 <?php
 
-namespace Vkal\Models;
+namespace Vkal\Classes\Models;
 
 use Vkal\Interfaces\ClientInterface;
 

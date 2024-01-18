@@ -1,6 +1,6 @@
 <?php
 
-namespace Vkal\Models;
+namespace Vkal\Classes\http;
 
 class Credentials {
     protected string $env;
