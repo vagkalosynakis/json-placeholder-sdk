@@ -6,6 +6,7 @@
 * ~~Add traits for models (canGet, canDelete, canUpdate, etc)~~
 * ~~Remove client from final version~~
 * Add tests
+* Merge headers with body in client requests
 
 ## Usage
 
