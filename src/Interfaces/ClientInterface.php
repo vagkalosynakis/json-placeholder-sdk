@@ -2,9 +2,12 @@
 
 Namespace Vkal\Interfaces;
 
+use Vkal\Models\Response;
+
 interface ClientInterface{
-    public function getHeaders(?string $key);
-    public function setHeaders();
-    public function setUrl(string $url);
-    public function request();
+    public function getToken(): string;
+    public function getHeaders(?string $key): array;
+    public function setHeaders(): self;
+    public function setUrl(string $url): self;
+    public function request(): Response;
 }
