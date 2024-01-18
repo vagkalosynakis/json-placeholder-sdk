@@ -1,6 +1,8 @@
 {
     "name": "vkal/php-sdk",
+    "description": "Mockup for client abstracted sdk",
     "type": "project",
+    "license": "MIT",
     "authors": [
         {
             "name": "vkal"
