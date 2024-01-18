@@ -10,12 +10,14 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=7.1",
-        "guzzlehttp/guzzle": "7.9.x-dev"
+        "php": ">=7.1"
     },
     "autoload": {
         "psr-4": {
             "Vkal\\": "src/"
         }
+    },
+    "require-dev": {
+        "guzzlehttp/guzzle": "7.9.x-dev"
     }
 }
