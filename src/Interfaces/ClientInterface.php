@@ -6,8 +6,6 @@ use Vkal\Models\Response;
 
 interface ClientInterface{
     public function getToken(): string;
-    public function getHeaders(?string $key): array;
-    public function setHeaders(): self;
-    public function setUrl(string $url): self;
-    public function request(): Response;
+    public function setHeaders(array $headers): self;
+    public function request(string $method, string $url, array $body = []): Response;
 }
