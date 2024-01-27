@@ -3,6 +3,7 @@
 namespace Vkal\Traits;
 
 use Vkal\Config;
+use Vkal\Classes\http\Response;
 
 trait canGet {
     public function get(int $id = null)
@@ -18,6 +19,9 @@ trait canGet {
             ['verify' => false]
         );
 
-        return json_decode($response->getBody(), true);
+        return new Response(
+            $response->getStatusCode(),
+            $response->getBody()
+        );
     }
 }

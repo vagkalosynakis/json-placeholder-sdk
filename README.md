@@ -6,9 +6,18 @@
 * ~~Add traits for models (canGet, canDelete, canUpdate, etc)~~
 * ~~Remove client from final version~~
 * Add tests
-* Merge headers with body in client requests
+* ~~Merge headers with body in client requests~~
 
 ## Usage
+
+* Initialize the DI container inside the app bootstrap file.
+* Get the `Credentials` from the container and set them using its setters.
+* Create an implementation of the `ClientInterface`.
+* Bind its implementation inside the container to ensure the DI can resolve the Interface dependencies
+* Get the `Helper` from the container.
+* Use the `Helper` for everything.
+
+## Example
 
 ### Create a bootstrap file (index.php, etc) with:
 
@@ -21,15 +30,36 @@ error_reporting(E_ALL);
 require_once 'vendor/autoload.php';
 
 use Vkal\Classes\http\Credentials;
+use Vkal\Classes\Container;
+use Vkal\Classes\Models\Helper;
+use Vkal\Interfaces\ClientInterface;
 
 require 'VkalClient.php';
-require 'Helper.php';
 
-$credentials = new Credentials('demo', 'id', 'secret');
+$container = new Container();
+
+// Get credentials for client
+$credentials = $container->get(Credentials::class)
+    ->setEnv('demo')
+    ->setClientId('clientid')
+    ->setClientSecret('clientsecret');
+
+// Create a client that implements the ClientInterface
 $vkal_client = new VkalClient($credentials);
-$helper = new Helper($vkal_client);
 
-$users = $helper->users->get();
+// Bind the implementation to the interface for DI resolution
+$container->set(
+    ClientInterface::class,
+    function (Container $c) { return $c->get(VkalClient::class); }
+);
+
+// Resolve the client
+$helper = $container->get(Helper::class);
+
+$user = $helper->users()->get(1);
+echo '<pre>';
+print_r(json_decode($user->getBody(), true));
+echo '</pre>';
 ```
 
 ### Create a Client to provide to the SDK like `guzzle`:
@@ -62,6 +92,7 @@ class VkalClient implements ClientInterface {
   public function setHeaders(array $headers): self
   {
     $this->headers = $headers;
+    $this->client->setDefaultOption('headers', $this->headers);
     return $this;
   }
 
@@ -73,32 +104,5 @@ class VkalClient implements ClientInterface {
       $response->getBody()
     );
   }
-}
-```
-
-### Create a helper function to implement use the SDK with:
-
-```
-<?php
-
-use Vkal\Interfaces\ClientInterface;
-use Vkal\Classes\Models\Posts;
-use Vkal\Classes\Models\Users;
-
-class Helper {
-    protected ClientInterface $client;
-
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
-    }
-
-    public function posts() {
-        return new Posts($this->client);
-    }
-
-    public function users() {
-        return new Users($this->client);
-    }
 }
 ```

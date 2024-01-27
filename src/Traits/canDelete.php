@@ -3,6 +3,7 @@
 namespace Vkal\Traits;
 
 use Vkal\Config;
+use Vkal\Classes\http\Response;
 
 trait canDelete {
     public function delete(?int $id)
@@ -18,6 +19,9 @@ trait canDelete {
             ['verify' => false]
         );
 
-        return json_decode($response->getBody(), true);
+        return new Response(
+            $response->getStatusCode(),
+            $response->getBody()
+        );
     }
 }

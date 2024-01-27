@@ -3,6 +3,8 @@
 namespace Vkal\Traits;
 
 use Vkal\Config;
+use Vkal\Classes\http\Response;
+
 
 trait canCreate {
     public function create(array $body)
@@ -18,6 +20,9 @@ trait canCreate {
             )
         );
 
-        return json_decode($response->getBody(), true);
+        return new Response(
+            $response->getStatusCode(),
+            $response->getBody()
+        );
     }
 }

@@ -3,6 +3,7 @@
 namespace Vkal\Traits;
 
 use Vkal\Config;
+use Vkal\Classes\http\Response;
 
 trait canUpdate {
     public function update(array $body)
@@ -10,14 +11,17 @@ trait canUpdate {
         $url = Config::get('base_url').$this->endpoint;
 
         $response = $this->client->request(
-            'POST',
+            'PUT',
             $url,
             array_merge(
                 ['verify' => false],
-                $body
+                ['form_params' => $body]
             )
         );
 
-        return json_decode($response->getBody(), true);
+        return new Response(
+            $response->getStatusCode(),
+            $response->getBody()
+        );
     }
 }
