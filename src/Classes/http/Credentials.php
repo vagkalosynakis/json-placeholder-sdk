@@ -7,11 +7,12 @@ class Credentials {
     protected string $clientId;
     protected string $clientSecret;
 
-    public function __construct(string $env, string $clientId, string $clientSecret)
+    public function __construct(){}
+
+    public function setEnv($env)
     {
         $this->env = $env;
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
+        return $this;
     }
 
     public function getEnv()
@@ -19,9 +20,21 @@ class Credentials {
         return $this->env;
     }
 
+    public function setClientId($clientId)
+    {
+        $this->clientId = $clientId;
+        return $this;
+    }
+
     public function getClientId()
     {
         return $this->clientId;
+    }
+
+    public function setClientSecret($clientSecret)
+    {
+        $this->clientSecret = $clientSecret;
+        return $this;
     }
 
     public function getClientSecret()
