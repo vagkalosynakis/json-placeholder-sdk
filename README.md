@@ -5,8 +5,12 @@
 * ~~Separate classes into more explicit namespaces (http, models, etc)~~
 * ~~Add traits for models (canGet, canDelete, canUpdate, etc)~~
 * ~~Remove client from final version~~
-* Add tests
+* Add tests (Earlier supported version?)
 * ~~Merge headers with body in client requests~~
+
+## Check PHP compatibility with `PHP Code Sniffer`. Change version accordingly.
+
+`./vendor/bin/phpcs -p . --standard=PHPCompatibility --ignore=*/vendor/* --runtime-set testVersion 7.4-`
 
 ## Usage
 

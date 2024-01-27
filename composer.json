@@ -8,6 +8,10 @@
             "name": "vkal"
         }
     ],
+    "scripts": {
+        "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility",
+        "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility"
+    },
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.1"
@@ -18,6 +22,9 @@
         }
     },
     "require-dev": {
-        "guzzlehttp/guzzle": "7.9.x-dev"
-    }
+        "guzzlehttp/guzzle": "7.9.x-dev",
+        "squizlabs/php_codesniffer": "*",
+        "phpcompatibility/php-compatibility": "*"
+    },
+    "prefer-stable" : true
 }
