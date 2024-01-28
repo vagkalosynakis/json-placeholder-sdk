@@ -14,10 +14,7 @@ trait canCreate {
         $response = $this->client->request(
             'POST',
             $url,
-            // array_merge(
-            //     ['verify' => false],
-            //     ['form_params' => $body]
-            // )
+            $body
         );
 
         return new Response(

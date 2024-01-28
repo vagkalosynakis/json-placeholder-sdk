@@ -16,7 +16,6 @@ trait canGet {
         $response = $this->client->request(
             'GET',
             $url,
-            // ['verify' => false]
         );
 
         return new Response(
