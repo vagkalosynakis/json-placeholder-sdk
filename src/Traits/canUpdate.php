@@ -13,10 +13,10 @@ trait canUpdate {
         $response = $this->client->request(
             'PUT',
             $url,
-            array_merge(
-                ['verify' => false],
-                ['form_params' => $body]
-            )
+            // array_merge(
+            //     ['verify' => false],
+            //     ['form_params' => $body]
+            // )
         );
 
         return new Response(

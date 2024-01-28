@@ -22,7 +22,6 @@
         }
     },
     "require-dev": {
-        "guzzlehttp/guzzle": "7.9.x-dev",
         "squizlabs/php_codesniffer": "*",
         "phpcompatibility/php-compatibility": "*"
     },
