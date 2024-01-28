@@ -15,8 +15,7 @@ trait canDelete {
 
         $response = $this->client->request(
             'DELETE',
-            $url,
-            ['verify' => false]
+            $url
         );
 
         return new Response(
