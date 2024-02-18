@@ -3,8 +3,8 @@
 namespace Vkal\Classes\http;
 
 class Response {
-    protected int $status_code;
-    protected mixed $body;
+    protected $status_code;
+    protected $body;
 
     public function __construct(int $status_code, mixed $body)
     {

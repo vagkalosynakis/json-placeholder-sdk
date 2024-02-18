@@ -6,7 +6,7 @@ namespace Vkal\Classes;
 
 class Container
 {
-    private array $entries = [];
+    private $entries = [];
 
     public function get(string $id)
     {

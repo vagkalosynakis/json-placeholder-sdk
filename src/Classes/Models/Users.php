@@ -11,9 +11,9 @@ class Users extends AbstractModel {
 
     use canGet;
 
-    protected string $endpoint;
-    protected ClientInterface $client;
-    protected string $class_name;
+    protected $endpoint;
+    protected $client;
+    protected $class_name;
 
     public function __construct(ClientInterface $client)
     {

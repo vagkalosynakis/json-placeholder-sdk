@@ -7,9 +7,9 @@ use Vkal\Classes\Models\Posts;
 use Vkal\Classes\Models\Users;
 
 class Helper {
-    protected ClientInterface $client;
-    protected Posts $posts;
-    protected Users $users;
+    protected $client;
+    protected $posts;
+    protected $users;
 
     public function __construct(
         ClientInterface $client,

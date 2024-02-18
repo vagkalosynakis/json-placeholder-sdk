@@ -3,13 +3,13 @@
 namespace Vkal\Classes\http;
 
 class Credentials {
-    protected string $env;
-    protected string $clientId;
-    protected string $clientSecret;
+    protected $env;
+    protected $clientId;
+    protected $clientSecret;
 
     public function __construct(){}
 
-    public function setEnv($env)
+    public function setEnv(string $env)
     {
         $this->env = $env;
         return $this;
@@ -20,7 +20,7 @@ class Credentials {
         return $this->env;
     }
 
-    public function setClientId($clientId)
+    public function setClientId(string $clientId)
     {
         $this->clientId = $clientId;
         return $this;
@@ -31,7 +31,7 @@ class Credentials {
         return $this->clientId;
     }
 
-    public function setClientSecret($clientSecret)
+    public function setClientSecret(string $clientSecret)
     {
         $this->clientSecret = $clientSecret;
         return $this;

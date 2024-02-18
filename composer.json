@@ -16,6 +16,11 @@
     "require": {
         "php": ">=7.1"
     },
+    "config": {
+        "platform": {
+            "php": "70100"
+        }
+    },
     "autoload": {
         "psr-4": {
             "Vkal\\": "src/"
@@ -24,7 +29,8 @@
     "require-dev": {
         "guzzlehttp/guzzle": "7.9.x-dev",
         "squizlabs/php_codesniffer": "*",
-        "phpcompatibility/php-compatibility": "*"
+        "phpcompatibility/php-compatibility": "*",
+        "phpstan/phpstan": "^1.10"
     },
     "prefer-stable" : true
 }
