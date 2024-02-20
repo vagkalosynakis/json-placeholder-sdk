@@ -6,7 +6,15 @@ use Vkal\Config;
 use Vkal\Classes\http\Response;
 
 trait canUpdate {
-    public function update(array $body)
+    
+    /**
+     * Updates a resources
+     * using the $body as payload.
+     *
+     * @param array<mixed> $body
+     * @return Response
+     */
+    public function update(array $body): Response
     {
         $url = Config::get('base_url').$this->endpoint;
 

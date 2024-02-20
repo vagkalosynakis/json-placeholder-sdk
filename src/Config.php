@@ -5,12 +5,12 @@ namespace Vkal;
 class Config {
     public static $items = array();
 
-    public static function load()
+    public static function load(): void
     {
         static::$items = include('Config/Settings.php');
     }
     
-    public static function get(?string $key = null)
+    public static function get(?string $key = null): mixed
     {
         static::load();
         $keys = explode('.', $key);

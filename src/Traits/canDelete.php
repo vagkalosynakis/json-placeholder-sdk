@@ -6,7 +6,8 @@ use Vkal\Config;
 use Vkal\Classes\http\Response;
 
 trait canDelete {
-    public function delete(?int $id)
+    
+    public function delete(?int $id): Response
     {
         $url = Config::get('base_url').$this->endpoint;
         if (!empty($id)) {

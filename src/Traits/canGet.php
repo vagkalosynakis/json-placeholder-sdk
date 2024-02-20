@@ -6,7 +6,7 @@ use Vkal\Config;
 use Vkal\Classes\http\Response;
 
 trait canGet {
-    public function get(int $id = null)
+    public function get(int $id = null): Response
     {
         $url = Config::get('base_url').$this->endpoint;
         if (!empty($id)) {

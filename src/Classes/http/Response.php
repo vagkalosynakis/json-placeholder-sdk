@@ -12,12 +12,12 @@ class Response {
         $this->body = $body;
     }
 
-    public function getStatusCode()
+    public function getStatusCode(): int
     {
         return $this->status_code;
     }
 
-    public function getBody()
+    public function getBody(): mixed
     {
         return $this->body;
     }

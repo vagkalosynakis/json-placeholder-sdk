@@ -9,29 +9,29 @@ class Credentials {
 
     public function __construct(){}
 
-    public function setEnv(string $env)
+    public function setEnv(string $env): self
     {
         $this->env = $env;
         return $this;
     }
 
-    public function getEnv()
+    public function getEnv(): string
     {
         return $this->env;
     }
 
-    public function setClientId(string $clientId)
+    public function setClientId(string $clientId): self
     {
         $this->clientId = $clientId;
         return $this;
     }
 
-    public function getClientId()
+    public function getClientId(): string
     {
         return $this->clientId;
     }
 
-    public function setClientSecret(string $clientSecret)
+    public function setClientSecret(string $clientSecret): self
     {
         $this->clientSecret = $clientSecret;
         return $this;

@@ -22,11 +22,13 @@ class Helper {
         $this->users = $users;
     }
 
-    public function posts() {
+    public function posts(): Posts
+    {
         return $this->posts;
     }
 
-    public function users() {
+    public function users(): Users
+    {
         return $this->users;
     }
 

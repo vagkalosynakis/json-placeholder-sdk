@@ -5,9 +5,16 @@ namespace Vkal\Traits;
 use Vkal\Config;
 use Vkal\Classes\http\Response;
 
-
 trait canCreate {
-    public function create(array $body)
+
+    /**
+     * Creates a resources
+     * using the $body as payload.
+     *
+     * @param array<mixed> $body
+     * @return Response
+     */
+    public function create(array $body): Response
     {
         $url = Config::get('base_url').$this->endpoint;
 

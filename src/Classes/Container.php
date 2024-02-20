@@ -8,7 +8,7 @@ class Container
 {
     private $entries = [];
 
-    public function get(string $id)
+    public function get(string $id): mixed
     {
         if ($this->has($id)) {
             $entry = $this->entries[$id];
@@ -33,7 +33,7 @@ class Container
         $this->entries[$id] = $concrete;
     }
 
-    public function resolve(string $id)
+    public function resolve(string $id): mixed
     {
         try {
             $reflectionClass = new \ReflectionClass($id);
@@ -68,11 +68,12 @@ class Container
                     );
                 }
 
-                if ($type instanceof \ReflectionUnionType) {
-                    throw new \Exception(
-                        "Cannot resolve class $id. Union type found for $name."
-                    );
-                }
+                // This is not supported before php8
+                // if ($type instanceof \ReflectionUnionType) {
+                //     throw new \Exception(
+                //         "Cannot resolve class $id. Union type found for $name."
+                //     );
+                // }
 
                 if ($type instanceof \ReflectionNamedType && ! $type->isBuiltin()) {
                     return $this->get($type->getName());
