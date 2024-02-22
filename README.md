@@ -12,9 +12,11 @@
 
 * Initialize the DI container inside the app bootstrap file.
 * Get the `Credentials` from the container and set them using its setters.
-* Create an implementation of the `ClientInterface`.
+* Get the `helper` from the container and set the credentials
+* Use the `Helper` for anything.
+* Optionally,Create an implementation of the `ClientInterface`.
 * Bind its implementation inside the container to ensure the DI can resolve the Interface dependencies
-* Get the `Helper` from the container.
+* Set the client of the helper using `setClient`.
 * Use the `Helper` for everything.
 
 ## Example
