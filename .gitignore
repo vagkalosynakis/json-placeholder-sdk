@@ -6,3 +6,4 @@
 !composer.json
 !/src
 !README.md
+!/tests

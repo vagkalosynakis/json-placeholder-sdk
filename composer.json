@@ -16,11 +16,6 @@
     "require": {
         "php": ">=7.1"
     },
-    "config": {
-        "platform": {
-            "php": "70100"
-        }
-    },
     "autoload": {
         "psr-4": {
             "Vkal\\": "src/"
@@ -30,7 +25,14 @@
         "guzzlehttp/guzzle": "7.9.x-dev",
         "squizlabs/php_codesniffer": "*",
         "phpcompatibility/php-compatibility": "*",
-        "phpstan/phpstan": "^1.10"
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^11.0",
+        "pestphp/pest": "3.x-dev"
     },
-    "prefer-stable" : true
+    "prefer-stable" : true,
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
 }
