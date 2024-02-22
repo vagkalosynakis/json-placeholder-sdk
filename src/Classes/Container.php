@@ -4,9 +4,20 @@ declare(strict_types = 1);
 
 namespace Vkal\Classes;
 
+use Vkal\Interfaces\ClientInterface;
+use Vkal\Classes\http\CurlClient;
+
 class Container
 {
     private $entries = [];
+
+    public function __construct()
+    {
+        $this->set(
+            ClientInterface::class,
+            function (Container $c) { return $c->get(CurlClient::class); }
+        );
+    }
 
     public function get(string $id): mixed
     {

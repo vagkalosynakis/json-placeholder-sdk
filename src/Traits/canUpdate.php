@@ -26,7 +26,8 @@ trait canUpdate {
 
         return new Response(
             $response->getStatusCode(),
-            $response->getBody()
+            $response->getBody(),
+            $response->getErrors()
         );
     }
 }

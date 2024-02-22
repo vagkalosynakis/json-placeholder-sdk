@@ -21,7 +21,8 @@ trait canDelete {
 
         return new Response(
             $response->getStatusCode(),
-            $response->getBody()
+            $response->getBody(),
+            $response->getErrors()
         );
     }
 }

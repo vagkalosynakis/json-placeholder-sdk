@@ -2,11 +2,7 @@
 
 ### TO DOs
 
-* ~~Separate classes into more explicit namespaces (http, models, etc)~~
-* ~~Add traits for models (canGet, canDelete, canUpdate, etc)~~
-* ~~Remove client from final version~~
-* Add tests (Earlier supported version?)
-* ~~Merge headers with body in client requests~~
+* Add todos here
 
 ## Check PHP compatibility with `PHP Code Sniffer`. Change version accordingly.
 
@@ -23,50 +19,7 @@
 
 ## Example
 
-### Create a bootstrap file (index.php, etc) with:
-
-```
-<?php
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
-
-require_once 'vendor/autoload.php';
-
-use Vkal\Classes\http\Credentials;
-use Vkal\Classes\Container;
-use Vkal\Classes\Models\Helper;
-use Vkal\Interfaces\ClientInterface;
-
-require 'VkalClient.php';
-
-$container = new Container();
-
-// Get credentials for client
-$credentials = $container->get(Credentials::class)
-    ->setEnv('demo')
-    ->setClientId('clientid')
-    ->setClientSecret('clientsecret');
-
-// Create a client that implements the ClientInterface
-$vkal_client = new VkalClient($credentials);
-
-// Bind the implementation to the interface for DI resolution
-$container->set(
-    ClientInterface::class,
-    function (Container $c) { return $c->get(VkalClient::class); }
-);
-
-// Resolve the client
-$helper = $container->get(Helper::class);
-
-$user = $helper->users()->get(1);
-echo '<pre>';
-print_r(json_decode($user->getBody(), true));
-echo '</pre>';
-```
-
-### Create a Client to provide to the SDK like `guzzle`:
+### Create a curl client class that implements the ClientInterface
 
 ```
 <?php
@@ -77,9 +30,9 @@ use GuzzleHttp\Client;
 
 class VkalClient implements ClientInterface {
 
-  protected Credentials $credentials;
-  protected mixed $client;
-  protected array $headers;
+  protected $credentials;
+  protected $client;
+  protected $headers;
 
   public function __construct(Credentials $credentials)
   {
@@ -102,11 +55,59 @@ class VkalClient implements ClientInterface {
 
   public function request(string $method, string $url, array $body = []): Response
   {
-    $response = $this->client->request($method, $url, $body);
+    $response = $this->client->request(
+      $method,
+      $url,
+      array_merge(
+        ['verify' => false],
+        ['form_params' => $body]
+      )
+    );
     return new Response(
       $response->getStatusCode(),
       $response->getBody()
     );
   }
 }
+```
+
+### Create a bootstrap file (index or other entrypoint)
+
+```
+<?php
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
+require_once 'vendor/autoload.php';
+
+use Vkal\Classes\http\Credentials;
+use Vkal\Classes\Container;
+use Vkal\Classes\Helper;
+use Vkal\Interfaces\ClientInterface;
+
+require 'VkalClient.php';
+
+$container = new Container();
+
+// Get credentials for client
+$credentials = $container->get(Credentials::class)
+    ->setEnv('demo')
+    ->setClientId('clientid')
+    ->setClientSecret('clientsecret');
+
+// Bind the implementation to the interface for DI resolution
+$container->set(
+    ClientInterface::class,
+    function (Container $c) { return $c->get(VkalClient::class); }
+);
+
+// Resolve the helper
+$helper = $container->get(Helper::class);
+$helper->setCredentials($credentials);
+$helper->setClient($container->get(VkalClient::class));
+
+echo '<pre>';
+print_r(json_decode($helper->posts()->get(1)->getBody(), true));
+echo '</pre>';
 ```
