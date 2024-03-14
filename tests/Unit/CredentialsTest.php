@@ -14,13 +14,11 @@ test('Correct Credentials', function () {
 
     expect($credentials->getEnv())
         ->toBeString()
-        ->toBe($environment);
-
-    expect($credentials->getClientId())
+        ->toBe($environment)
+        ->and($credentials->getClientId())
         ->toBeString()
-        ->toBe($clientId);
-
-    expect($credentials->getClientSecret())
+        ->toBe($clientId)
+        ->and($credentials->getClientSecret())
         ->toBeString()
         ->toBe($clientSecret);
 
