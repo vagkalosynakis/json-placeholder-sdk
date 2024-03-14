@@ -2,7 +2,9 @@
 
 ### TO DOs
 
-* Add todos here
+* Add exceptions to all methods for validation (i.e. InvalidArgumentException on negative int)
+* Ignore Getter/setters from tests [PHPUnit](https://docs.phpunit.de/en/9.6/code-coverage-analysis.html#ignoring-code-blocks)
+* Check token expiration and acquire new token if expiring soon.
 
 ## Check PHP compatibility with `PHP Code Sniffer`. Change version accordingly.
 
